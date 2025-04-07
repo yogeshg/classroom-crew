@@ -23,7 +23,8 @@ process_voting_and_filter_task:
     the students, propose a few topics for the next lesson. Filter out any questions that
     have been discussed in previous lessons to ensure only fresh questions remain. Each
     student will vote on a three questions and give a reason why they chose it. Then,
-    rank the questions by decreasing vote counts. Finally, declare the winner.
+    rank the questions by decreasing vote counts. Finally, declare the winner. In case of
+    a tie, use your own judgement to pick a winner.
   expected_output: Possible topics for next lesson, voting with justification, tally, and
     the winner.
   async_execution: false

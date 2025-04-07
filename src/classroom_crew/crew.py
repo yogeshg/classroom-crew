@@ -15,8 +15,8 @@ class LessonContents(BaseModel):
 
 
 class NextChapterOptions(BaseModel):
-    winner: str
-    voting: List[Tuple[str, int]]
+    winner: str = Field(..., "Single winner topic for the next lesson")
+    voting: List[Tuple[str, int]] = Field(..., description="A list with potential topics for next lesson, and number of votes")
 
 
 class Lesson(BaseModel):
