@@ -17,10 +17,13 @@ simulate_student_qa_task:
   context:
   - generate_lesson_content_task
 process_voting_and_filter_task:
-  description: Simulate voting on the student questions. Filter out any questions that
+  description: Simulate voting on the student questions. Based on the questions asked by
+    the students, propose a few topics for the next lesson. Filter out any questions that
     have been discussed in previous lessons to ensure only fresh questions remain. Each
-    student will vote on the unique questions and give a reason why they chose it.
-  expected_output: List of student votes and the winner.
+    student will vote on a three questions and give a reason why they chose it. Then,
+    rank the questions by decreasing vote counts. Finally, declare the winner.
+  expected_output: Possible topics for next lesson, voting with justification, tally, and
+    the winner.
   async_execution: false
   agent: discussion_moderator_expert
   context:
