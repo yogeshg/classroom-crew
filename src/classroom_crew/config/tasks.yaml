@@ -37,3 +37,6 @@ log:
     Based on all the context, log the data correctly.
   expected_output: >
     Information of the course, contents of the chapter, and options for next.
+  context:
+  - generate_lesson_content_task
+  - process_voting_and_filter_task
