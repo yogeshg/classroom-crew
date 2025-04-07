@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-from classroom.crew import ClassroomCrew
+from classroom_crew.crew import ClassroomCrew
 
 # This main file is intended to be a way for your to run your
 # crew locally, so refrain from adding unnecessary logic into this file.
@@ -19,6 +19,9 @@ def run():
     }
     ClassroomCrew().crew().kickoff(inputs=inputs)
 
+
+def plot():
+    pass
 
 def train():
     """

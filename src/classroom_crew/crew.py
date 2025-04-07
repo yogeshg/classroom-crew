@@ -7,13 +7,6 @@ class ClassroomCrew():
     """Classroom crew"""
 
     @agent
-    def lesson_planner_expert(self) -> Agent:
-        return Agent(
-            config=self.agents_config['lesson_planner_expert'],
-            tools=[],
-        )
-
-    @agent
     def teacher_content_specialist(self) -> Agent:
         return Agent(
             config=self.agents_config['teacher_content_specialist'],
@@ -34,20 +27,6 @@ class ClassroomCrew():
             tools=[],
         )
 
-    @agent
-    def next_topic_selector(self) -> Agent:
-        return Agent(
-            config=self.agents_config['next_topic_selector'],
-            tools=[],
-        )
-
-
-    @task
-    def initialize_lesson_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['initialize_lesson_task'],
-            tools=[],
-        )
 
     @task
     def generate_lesson_content_task(self) -> Task:
@@ -67,20 +46,6 @@ class ClassroomCrew():
     def process_voting_and_filter_task(self) -> Task:
         return Task(
             config=self.tasks_config['process_voting_and_filter_task'],
-            tools=[],
-        )
-
-    @task
-    def select_next_topic_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['select_next_topic_task'],
-            tools=[],
-        )
-
-    @task
-    def update_lesson_tracker_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['update_lesson_tracker_task'],
             tools=[],
         )
 

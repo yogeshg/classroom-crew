@@ -1,64 +1,28 @@
 ---
-initialize_lesson_task:
-  description: 'Collect initial inputs: {course_topic} and {course_prerequisites}.
-    Set {lesson_number} to 1 and establish the initial {current_topic} as the user-specified
-    course topic. This task sets the foundation for the subsequent lesson automation.'
-  expected_output: A starter lesson configuration containing {course_topic}, {course_prerequisites},
-    {lesson_number} set to 1, and {current_topic} initialized.
-  async_execution: false
-  agent: lesson_planner_expert
 generate_lesson_content_task:
-  description: For lesson number {lesson_number} on the topic {current_topic}, generate
-    the lesson content. This includes listing the pre-requisites {course_prerequisites}
-    for the lesson, delivering a '10 things I need to know about {current_topic}'
-    segment, and proposing 2-3 additional topics for future discussion.
-  expected_output: Structured lesson content for lesson {lesson_number} including
-    a '10 Things I Need to Know About {current_topic}' session and a set of 2-3 new
-    topic proposals.
+  description: Create lesson number {lesson_number} on the topic {current_topic} for a
+    course on {course_topic}. First, list '10 things I need to know about
+    {current_topic} in {course_topic}'. Then, for each topic, Add a two to five paragraph
+    description, use examples wherever necessary. Finally, propose three follow up topics.
+  expected_output: A lesson formatted as markdown.
   async_execution: false
   agent: teacher_content_specialist
-  context:
-  - initialize_lesson_task
 simulate_student_qa_task:
   description: Simulate a classroom Q&A session for lesson {lesson_number} under the
-    current topic {current_topic}. Generate 5 unique questions from students with
-    diverse backgrounds related to the lesson content.
-  expected_output: A list of 5 unique student questions focused on {current_topic}
-    that reflect diverse perspectives.
+    current topic {current_topic}. First, list five students from diverse backgrounds.
+    Then, generate a unique question from each student related to the lesson content.
+  expected_output: A list of 5 students and their questions.
   async_execution: false
   agent: student_interaction_specialist
   context:
   - generate_lesson_content_task
 process_voting_and_filter_task:
-  description: Conduct a simulated voting session on the student questions for lesson
-    {lesson_number}. Filter out any questions that have been discussed in previous
-    lessons to ensure only fresh questions remain. Use this process to refine the
-    list of questions.
-  expected_output: A final, refined list of 5 unique, new student questions for {current_topic}
-    after filtering out any duplicates previously discussed.
+  description: Simulate voting on the student questions. Filter out any questions that
+    have been discussed in previous lessons to ensure only fresh questions remain. Each
+    student will vote on the unique questions and give a reason why they chose it.
+  expected_output: List of student votes and the winner.
   async_execution: false
   agent: discussion_moderator_expert
   context:
   - simulate_student_qa_task
-select_next_topic_task:
-  description: Evaluate the teacher's additional proposed topics from lesson {lesson_number}
-    along with the top-voted student questions. Select the winning topic, updating
-    {current_topic} for the next lesson.
-  expected_output: The designated winning topic that will serve as the new {current_topic}
-    for lesson number {lesson_number+1}.
-  async_execution: false
-  agent: next_topic_selector
-  context:
   - generate_lesson_content_task
-  - process_voting_and_filter_task
-update_lesson_tracker_task:
-  description: Log the results of lesson {lesson_number} including the lesson content,
-    Q&A interactions, and the new topic selected. Update {lesson_number} by incrementing
-    it. If {lesson_number} is less than 10, pass the updated {current_topic} to initiate
-    the next lesson generation cycle.
-  expected_output: An updated lesson tracker reflecting the completed lesson {lesson_number}
-    and if applicable, initialization for the next lesson with the new {current_topic}.
-  async_execution: false
-  agent: lesson_planner_expert
-  context:
-  - select_next_topic_task
