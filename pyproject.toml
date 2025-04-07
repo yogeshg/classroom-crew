@@ -1,7 +1,7 @@
 [project]
-name = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo"
+name = "classroom_crew"
 version = "0.1.0"
-description = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo using crewAI"
+description = "classroom_crew using crewAI"
 authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10,<=3.13"
 dependencies = [
@@ -9,11 +9,11 @@ dependencies = [
 ]
 
 [project.scripts]
-cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo.main:run"
-run_crew = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo.main:run"
-train = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo.main:train"
-replay = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo.main:replay"
-test = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo.main:test"
+classroom_crew = "classroom_crew.main:run"
+run_crew = "classroom_crew.main:run"
+train = "classroom_crew.main:train"
+replay = "classroom_crew.main:replay"
+test = "classroom_crew.main:test"
 
 [build-system]
 requires = ["hatchling"]
