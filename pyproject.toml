@@ -1,0 +1,20 @@
+[project]
+name = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo"
+version = "0.1.0"
+description = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<=3.13"
+dependencies = [
+    "crewai[tools]>=0.86.0,<1.0.0"
+]
+
+[project.scripts]
+cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo.main:run"
+run_crew = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo.main:run"
+train = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo.main:train"
+replay = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo.main:replay"
+test = "cou_you_plea_clari_if_you_classro_bui_shou_incorpora_cre_automati_workflo.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
