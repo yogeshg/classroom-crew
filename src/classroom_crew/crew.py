@@ -1,5 +1,29 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from pydantic import BaseModel, Field
+from typing import List, Tuple
+
+
+class LessonInfo(BaseModel):
+    cours_topic: str
+    current_chapter: str
+    course_prerequisites: List[str]
+
+
+class LessonContents(BaseModel):
+    contents_markdown: str = Field(..., description="contents of the lesson in markdown")
+
+
+class NextChapterOptions(BaseModel):
+    winner: str
+    voting: List[Tuple[str, int]]
+
+
+class Lesson(BaseModel):
+    info: LessonInfo
+    contents: LessonContents
+    options: NextChapterOptions
+
 
 
 @CrewBase
@@ -47,6 +71,13 @@ class ClassroomCrew():
         return Task(
             config=self.tasks_config['process_voting_and_filter_task'],
             tools=[],
+        )
+
+    @task
+    def log(self) -> Task:
+        return Task(
+            config=self.tasks_config['log'],
+            output_json=Lesson
         )
 
 

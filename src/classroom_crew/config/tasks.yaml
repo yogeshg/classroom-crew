@@ -1,16 +1,18 @@
 ---
 generate_lesson_content_task:
-  description: Create lesson number {lesson_number} on the topic {current_topic} for a
-    course on {course_topic}. First, list '10 things I need to know about
-    {current_topic} in {course_topic}'. Then, for each topic, Add a two to five paragraph
-    description, use examples wherever necessary. Finally, propose three follow up topics.
+  description: Create lesson on the topic {current_chapter} for a course {course_topic}.
+    You can assume that the students have completed {course_prerequisites}. First, list
+    '10 things I need to know about {current_chapter} in {course_topic}'. Then, for each
+    topic, Add a two to five paragraph description, use examples wherever necessary.
+    Finally, propose three follow up topics.
   expected_output: A lesson formatted as markdown.
   async_execution: false
   agent: teacher_content_specialist
 simulate_student_qa_task:
-  description: Simulate a classroom Q&A session for lesson {lesson_number} under the
-    current topic {current_topic}. First, list five students from diverse backgrounds.
-    Then, generate a unique question from each student related to the lesson content.
+  description: Simulate a classroom group discussion on the topic {current_chapter} for a
+    course on {course_topic}. First, list five students from diverse backgrounds. Then,
+    they will share what they learnt today and what they found out in their own research.
+    Then, the next topic they would like to learn about in the next lesson.
   expected_output: A list of 5 students and their questions.
   async_execution: false
   agent: student_interaction_specialist
@@ -29,3 +31,9 @@ process_voting_and_filter_task:
   context:
   - simulate_student_qa_task
   - generate_lesson_content_task
+log:
+  agent: teacher_content_specialist
+  description: >
+    Based on all the context, log the data correctly.
+  expected_output: >
+    Information of the course, contents of the chapter, and options for next.

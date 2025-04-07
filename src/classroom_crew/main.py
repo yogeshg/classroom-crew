@@ -56,8 +56,7 @@ def test():
     inputs = {
         'course_topic': 'Electrical Systems in California Homes',
         'course_prerequisites': 'high school physics, college level physics',
-        'current_topic': 'introduction',
-        'lesson_number': '1'
+        'current_topic': 'introduction'
     }
     try:
         ClassroomCrew().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
